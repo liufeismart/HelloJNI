@@ -61,6 +61,13 @@ JNIEXPORT jstring JNICALL Java_com_liufeismart_jni_hellojni_HelloJNI_setName
 
 }
 
+/*
+ * Class:     com_liufeismart_jni_hellojni_HelloJNI
+ * Method:    getArray
+ * Signature: ([I)[I
+ * 对副本操作： Get/Release<Tpye>ArrayRegion
+ * 对直接指针: Get/Release<Type>ArrayElements
+ */
 JNIEXPORT jintArray JNICALL Java_com_liufeismart_jni_hellojni_HelloJNI_getArray
   (JNIEnv* env , jclass instance, jintArray jArray) {
     jintArray javaArray = (*env)->NewIntArray(env, 10);

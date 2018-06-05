@@ -22,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
         int[] myArray = HelloJNI.getArray(newArray);
         String toString = "";
         for(int i=0; i< myArray.length; i++) {
-            toString = myArray[i]+", ";
+            toString += myArray[i]+", ";
+            System.out.println(myArray[i]);
         }
         textView.setText(textView.getText().toString()+"\n"+ toString);
     }
