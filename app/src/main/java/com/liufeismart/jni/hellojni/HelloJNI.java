@@ -9,6 +9,8 @@ public class HelloJNI {
     public static native String helloJNI();
     public static native int add(int a, int b);
 
-    //Java String 转C字符串
+    //Java String 与C char/jbyte
     public static native String setName(String name);
+
+    public static native int[] getArray(int[] array);
 }

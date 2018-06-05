@@ -31,6 +31,14 @@ JNIEXPORT jint JNICALL Java_com_liufeismart_jni_hellojni_HelloJNI_add
 JNIEXPORT jstring JNICALL Java_com_liufeismart_jni_hellojni_HelloJNI_setName
   (JNIEnv *, jclass, jstring);
 
+/*
+ * Class:     com_liufeismart_jni_hellojni_HelloJNI
+ * Method:    getArray
+ * Signature: ([I)[I
+ */
+JNIEXPORT jintArray JNICALL Java_com_liufeismart_jni_hellojni_HelloJNI_getArray
+  (JNIEnv *, jclass, jintArray);
+
 #ifdef __cplusplus
 }
 #endif

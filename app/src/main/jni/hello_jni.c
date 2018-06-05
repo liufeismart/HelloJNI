@@ -24,15 +24,14 @@ JNIEXPORT jint JNICALL Java_com_liufeismart_jni_hellojni_HelloJNI_add
  * Class:     com_liufeismart_jni_hellojni_HelloJNI
  * Method:    setName
  * Signature: (Ljava/lang/String;)Ljava/lang/String;
+ * C->Java: NewStringUTF
+ * Java->C: GetStringUTFChars
+ *
  */
 JNIEXPORT jstring JNICALL Java_com_liufeismart_jni_hellojni_HelloJNI_setName
   (JNIEnv* env, jclass instance, jstring name ) {
 
   jstring javaString;
-  /* C->Java: NewStringUTF */
-
-
-  /* Java->C: GetStringUTFChars*/
   const jbyte* str;
   jboolean isCopy;
   str = (*env)->GetStringUTFChars(env, name, &isCopy);
@@ -44,6 +43,7 @@ JNIEXPORT jstring JNICALL Java_com_liufeismart_jni_hellojni_HelloJNI_setName
          printf("C string points to actual string");
     }
   }
+  (*env)->ReleaseStringChars(env, name, str);
 
 
   const char *c_str = NULL;
@@ -58,5 +58,28 @@ JNIEXPORT jstring JNICALL Java_com_liufeismart_jni_hellojni_HelloJNI_setName
   sprintf(buff, "my name is %s", c_str);
   (*env)->ReleaseStringUTFChars(env, name, c_str);
   return (*env)->NewStringUTF(env,buff);
+
+}
+
+JNIEXPORT jintArray JNICALL Java_com_liufeismart_jni_hellojni_HelloJNI_getArray
+  (JNIEnv* env , jclass instance, jintArray jArray) {
+    jintArray javaArray = (*env)->NewIntArray(env, 10);
+    if(0!=javaArray) {
+        /* 对副本操作 */
+        jint nativeArray[10];
+        (*env)->GetIntArrayRegion(env, javaArray, 0, 10, nativeArray);
+        nativeArray[0] = 1;
+        nativeArray[1] = 2;
+        nativeArray[3] = 3;
+        (*env)->SetIntArrayRegion(env,javaArray, 0, 10, nativeArray);
+        /* 对直接指针操作 */
+        jint* nativeDirectArray;
+        jboolean isCopy;
+        nativeDirectArray = (*env)->GetIntArrayElements(env, javaArray, &isCopy);
+        nativeDirectArray[3] = 5;
+        (*env)->ReleaseIntArrayElements(env, javaArray, nativeDirectArray, 0);
+    }
+    return javaArray;
+
 
 }

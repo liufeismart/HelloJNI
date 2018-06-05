@@ -16,7 +16,15 @@ public class MainActivity extends AppCompatActivity {
         String s = HelloJNI.helloJNI();
         int add = HelloJNI.add(3, 66);
         textView.setText(s+"\n"+"我是一个加法: "+add);
-        textView.setText(textView.getText().toString()+HelloJNI.setName("liufeismart"));
+        textView.setText(textView.getText().toString()+"\n"+HelloJNI.setName("liufeismart"));
+        //
+        int newArray[] = new int[]{1,2, 3};
+        int[] myArray = HelloJNI.getArray(newArray);
+        String toString = "";
+        for(int i=0; i< myArray.length; i++) {
+            toString = myArray[i]+", ";
+        }
+        textView.setText(textView.getText().toString()+"\n"+ toString);
     }
 
 
