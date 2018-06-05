@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         String s = HelloJNI.helloJNI();
         int add = HelloJNI.add(3, 66);
         textView.setText(s+"\n"+"我是一个加法: "+add);
-        new HelloJNI().toString();
+        textView.setText(textView.getText().toString()+HelloJNI.setName("liufeismart"));
     }
 
 

@@ -23,6 +23,14 @@ JNIEXPORT jstring JNICALL Java_com_liufeismart_jni_hellojni_HelloJNI_helloJNI
 JNIEXPORT jint JNICALL Java_com_liufeismart_jni_hellojni_HelloJNI_add
   (JNIEnv *, jclass, jint, jint);
 
+/*
+ * Class:     com_liufeismart_jni_hellojni_HelloJNI
+ * Method:    setName
+ * Signature: (Ljava/lang/String;)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_com_liufeismart_jni_hellojni_HelloJNI_setName
+  (JNIEnv *, jclass, jstring);
+
 #ifdef __cplusplus
 }
 #endif

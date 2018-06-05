@@ -5,6 +5,10 @@ package com.liufeismart.jni.hellojni;
  */
 
 public class HelloJNI {
+    //helloJNI
     public static native String helloJNI();
     public static native int add(int a, int b);
+
+    //Java String 转C字符串
+    public static native String setName(String name);
 }

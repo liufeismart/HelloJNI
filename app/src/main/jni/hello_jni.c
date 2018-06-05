@@ -19,3 +19,44 @@ JNIEXPORT jint JNICALL Java_com_liufeismart_jni_hellojni_HelloJNI_add
 {
     return a+b;
 }
+
+/*
+ * Class:     com_liufeismart_jni_hellojni_HelloJNI
+ * Method:    setName
+ * Signature: (Ljava/lang/String;)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_com_liufeismart_jni_hellojni_HelloJNI_setName
+  (JNIEnv* env, jclass instance, jstring name ) {
+
+  jstring javaString;
+  /* C->Java: NewStringUTF */
+
+
+  /* Java->C: GetStringUTFChars*/
+  const jbyte* str;
+  jboolean isCopy;
+  str = (*env)->GetStringUTFChars(env, name, &isCopy);
+  if(0 != str) {
+    printf("Java string: %s", str);
+    if(JNI_TRUE == isCopy) {
+        printf("C string is a copy of the Java string.");
+    } else {
+         printf("C string points to actual string");
+    }
+  }
+
+
+  const char *c_str = NULL;
+  char buff[128] = {0};
+  c_str = (*env)->GetStringUTFChars(env, name, &isCopy);
+
+  if(c_str == NULL)
+  {
+     return NULL;
+  }
+  printf("C_str: %s \n", c_str);
+  sprintf(buff, "my name is %s", c_str);
+  (*env)->ReleaseStringUTFChars(env, name, c_str);
+  return (*env)->NewStringUTF(env,buff);
+
+}
