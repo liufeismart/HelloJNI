@@ -9,8 +9,10 @@ public class HelloJNI {
     public static native String helloJNI();
     public static native int add(int a, int b);
 
-    //Java String 与C char/jbyte
-    public static native String setName(String name);
+    public static native String stringJni(String javaString);
 
-    public static native int[] getArray(int[] array);
+    static {
+        //名字必须和build.gradle中的moduleName一致
+        System.loadLibrary("Hello");
+    }
 }
