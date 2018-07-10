@@ -12,7 +12,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk {
             moduleName "Hello"//指定生成的so文件名
-            abiFilters "armeabi", "armeabi-v7a", "x86"//cpu的类型
+            abiFilters  "armeabi-v7a", "x86"//cpu的类型
             stl "stlport_static"
         }
     }
@@ -22,6 +22,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
